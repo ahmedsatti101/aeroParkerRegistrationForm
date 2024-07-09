@@ -1,4 +1,4 @@
-package com.aeroParker.registrationForm.Customers;
+package com.aeroParker.registrationForm.Entity;
 
 import jakarta.persistence.*;
 

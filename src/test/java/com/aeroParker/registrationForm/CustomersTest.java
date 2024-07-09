@@ -1,6 +1,6 @@
 package com.aeroParker.registrationForm;
 
-import com.aeroParker.registrationForm.Customers.Customers;
+import com.aeroParker.registrationForm.Entity.Customers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
