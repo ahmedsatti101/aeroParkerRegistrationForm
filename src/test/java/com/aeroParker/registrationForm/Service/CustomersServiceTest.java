@@ -1,40 +1,30 @@
 package com.aeroParker.registrationForm.Service;
 
-import com.aeroParker.registrationForm.Controller.CustomerController;
 import com.aeroParker.registrationForm.Entity.Customers;
 import com.aeroParker.registrationForm.Repository.CustomersRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
-//@WebMvcTest(CustomerController.class)
 public class CustomersServiceTest {
-    @Autowired
-    private ObjectMapper objectMapper;
+    @InjectMocks
+    private CustomerService customerService;
 
-    @Autowired
-    private MockMvc mockMvc;
+    @Mock
+    private CustomersRepository customersRepository;
 
     @LocalServerPort
     private int port;
@@ -43,10 +33,7 @@ public class CustomersServiceTest {
 
     @BeforeEach
     public void setApi() {
-        api = api.concat(":").concat(port + "").concat("/registration");
-
-
-//        when(customersRepository.save(any(Customers.class))).thenReturn(customer);
+        api = api.concat(":").concat("5000").concat("/registration");
     }
 
     @Test
@@ -64,11 +51,10 @@ public class CustomersServiceTest {
         customer.setPostcode("D45 0YU");
         customer.setPhoneNumber("0743789473");
 
-        String customerJson = objectMapper.writeValueAsString(customer);
+       when(customersRepository.save(any(Customers.class))).thenReturn(customer);
 
-        mockMvc.perform(post(api)
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(customerJson))
-                .andExpect(status().isCreated());
+       customerService.addNewCustomer(customer);
+
+       verify(customersRepository).save(customer);
     }
 }
