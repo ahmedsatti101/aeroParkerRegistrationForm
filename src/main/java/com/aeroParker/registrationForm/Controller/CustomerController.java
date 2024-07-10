@@ -12,6 +12,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @CrossOrigin
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Customers newCustomer(@RequestBody Customers customer) {

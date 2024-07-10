@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS customers;
 
 CREATE TABLE customers (
     id INT NOT NULL AUTO_INCREMENT,
-    registered TIMESTAMP NOT NULL,
+    registered TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     email_address VARCHAR(255) UNIQUE NOT NULL,
     title VARCHAR(5) NOT NULL,
     first_name VARCHAR(50) NOT NULL,

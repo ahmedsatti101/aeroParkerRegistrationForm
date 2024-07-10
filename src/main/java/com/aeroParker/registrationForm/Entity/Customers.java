@@ -1,6 +1,7 @@
 package com.aeroParker.registrationForm.Entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ public class Customers {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @CreationTimestamp
     @Column(name = "registered", nullable = false)
     private LocalDateTime registered;
 
