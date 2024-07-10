@@ -63,16 +63,5 @@ public class CustomerControllerTest {
                .contentType(MediaType.APPLICATION_JSON)
                        .content(customerJson))
                .andExpect(status().isCreated());
-
-//        Mockito.when(customerController.newCustomer(customer)).thenReturn(customer);
-//        Mockito.doNothing().when(customerController).newCustomer(Mockito.any(Customers.class));
-//
-//        mockMvc.perform(post(api)
-//                        .content(customerJson)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isCreated());
-//
-//        Mockito.verify(customerController, Mockito.times(1)).newCustomer(Mockito.any(Customers.class));
     }
 }
