@@ -43,7 +43,7 @@ public class CustomerControllerTest {
 
     @Test
     @DisplayName("Verify Customer controller adds user data to database")
-    public void test1() throws Exception {
+    public void verifyControllerAddsUserToDatabase() throws Exception {
         Customers customer = new Customers();
         customer.setId(1);
         customer.setRegistered(LocalDateTime.now());

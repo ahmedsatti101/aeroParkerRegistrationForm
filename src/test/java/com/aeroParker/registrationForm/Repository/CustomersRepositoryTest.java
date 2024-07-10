@@ -42,8 +42,8 @@ public class CustomersRepositoryTest {
     }
 
     @Test
-    @DisplayName("Verify customer repository has been called at leat once")
-    public void test1 () throws Exception {
+    @DisplayName("Verify customer repository has been called at least once")
+    public void verifyRepositoryHasBeenCalledOnce () throws Exception {
         Customers customer = new Customers();
         customer.setId(1);
         customer.setRegistered(LocalDateTime.now());

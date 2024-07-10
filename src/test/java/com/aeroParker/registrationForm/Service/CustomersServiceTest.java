@@ -38,7 +38,7 @@ public class CustomersServiceTest {
 
     @Test
     @DisplayName("Verify customer service class has been called at least once")
-    public void test1() throws Exception {
+    public void verifyServiceHasBeenCalledOnce() {
         Customers customer = new Customers();
         customer.setId(1);
         customer.setRegistered(LocalDateTime.now());
